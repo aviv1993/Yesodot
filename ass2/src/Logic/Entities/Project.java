@@ -9,11 +9,11 @@ public class Project {
     private User offer,leader;
     private List<User> students;
     private boolean isTaken;
-    private String projectCode;
+    private Integer projectCode;
     private STATUS status;
     private Date createDate;
 
-    public Project(String name, String desc, String org, Date createDate, int howLong, User offer,String projectCode) {
+    public Project(String name, String desc, String org, Date createDate, int howLong, User offer,Integer projectCode) {
         this.name = name;
         this.desc = desc;
         this.org = org;
@@ -32,7 +32,7 @@ public class Project {
         this.leader = leader;
     }
 
-    public String getProjectCode(){
+    public Integer getProjectCode(){
         return projectCode;
     }
 
@@ -50,5 +50,13 @@ public class Project {
 
     public void setTaken(boolean taken) {
         isTaken = taken;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public User getOffer() {
+        return offer;
     }
 }

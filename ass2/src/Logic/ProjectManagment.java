@@ -7,5 +7,5 @@ public interface ProjectManagment {
     boolean logout(String userId);
     boolean register(String userId);
     boolean addProject(String name ,String description ,String howLong ,String firstName ,String familyName ,String email, String phone, String org);
-    boolean registerToProject(List<String> ids, String leader,String projectCode);
+    boolean registerToProject(List<String> ids, String leaderId,Integer projectCode);
 }

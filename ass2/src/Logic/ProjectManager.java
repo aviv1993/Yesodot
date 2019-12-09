@@ -64,8 +64,8 @@ public class ProjectManager implements ProjectManagment {
     }
 
     @Override
-    public boolean registerToProject(List<String> ids, String leader,String projectCode) {
-        User activeUser = uc.getUser(null);
+    public boolean registerToProject(List<String> ids, String leaderId,Integer projectCode) {
+        User activeUser = uc.getUser(null),leader = uc.getUser(leaderId);
         Project project= pc.getProject(projectCode);
         if(ids.size()<2)
             return false;
@@ -73,9 +73,9 @@ public class ProjectManager implements ProjectManagment {
             return false;
         if(project==null || project.isTaken())
             return false;
-        if(project.getLeader()!=null && !project.getLeader().getFirstName().equals(leader))
+        if(project.getLeader()!=null && leader!=null && !project.getLeader().getFirstName().equals(leader.getFirstName()))
             return false;
-        pc.registerToProject(ids,leader);
+        pc.registerToProject(ids,leader,project);
         return true;
     }
 }
