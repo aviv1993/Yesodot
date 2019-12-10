@@ -1,9 +1,12 @@
 package Logic.Entities;
 
-public class User {
+import Logic.Observer;
+import Logic.Subject;
+
+public class User implements Observer {
     private String uid, firstName, familyName, mail, phoneNumber;
     private boolean isStudent;
-
+    private boolean notifyPhone,notifyEmail;
     public User(String uid) {
         this.uid = uid;
     }
@@ -54,8 +57,35 @@ public class User {
         setMail(email);
         setPhoneNumber(phoneNumber);
     }
+
     public String getUid(){
         return uid;
+    }
+
+    public boolean isNotifyPhone() {
+        return notifyPhone;
+    }
+
+    public void setNotifyPhone(boolean notifyPhone) {
+        this.notifyPhone = notifyPhone;
+    }
+
+    public boolean isNotifyEmail() {
+        return notifyEmail;
+    }
+
+    public void setNotifyEmail(boolean notifyEmail) {
+        this.notifyEmail = notifyEmail;
+    }
+
+    @Override
+    public void update(Project project) {
+        if(isNotifyEmail()){
+            System.out.println("Sending to mail : " + getMail() +": " +"Project name :" + project.getName() + "Got approved, url : " + "www.bgu.ac.il/project/" + project.getProjectCode());
+        }
+        if(isNotifyPhone()){
+            System.out.println("Sending to phone : " + getPhoneNumber() +": " +"Project name :" + project.getName() + "Got approved, url : " + "www.bgu.ac.il/project/" + project.getProjectCode());
+        }
     }
 }
 

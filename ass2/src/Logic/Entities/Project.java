@@ -1,9 +1,13 @@
 package Logic.Entities;
 
+import Logic.Observer;
+import Logic.Subject;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Project {
+public class Project implements Subject {
     private String name,desc,org;
     private int howLong;
     private User offer,leader;
@@ -12,6 +16,7 @@ public class Project {
     private Integer projectCode;
     private STATUS status;
     private Date createDate;
+    private List<Observer> observers;
 
     public Project(String name, String desc, String org, Date createDate, int howLong, User offer,Integer projectCode) {
         this.name = name;
@@ -22,6 +27,7 @@ public class Project {
         this.offer = offer;
         this.projectCode = projectCode;
         this.status = STATUS.Check;
+        observers=new ArrayList<>();
     }
 
     public User getLeader() {
@@ -58,5 +64,39 @@ public class Project {
 
     public User getOffer() {
         return offer;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setStatus(STATUS status) {
+        this.status = status;
+        if(status==STATUS.Confirmed)
+            notifyObservers();
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public String getOrg() {
+        return org;
+    }
+
+    @Override
+    public void attach(Observer user) {
+        observers.add(user);
+    }
+
+    @Override
+    public void deattach(Observer user) {
+        observers.remove(user);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for(Observer observer : observers)
+            observer.update(this);
     }
 }
