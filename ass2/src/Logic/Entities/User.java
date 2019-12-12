@@ -85,12 +85,11 @@ public class User implements Observer {
     @Override
     public void update(Project project) {
         if(project.getSTATUS()==STATUS.Confirmed){
-            if(isNotifyEmail()){
-                System.out.println("Sending to user : " + getUid() + ", Via Mail, " +": " +"Project name :" +  project.getName() + " Got approved, url : " + "www.bgu.ac.il/project/" + project.getProjectCode());
-            }
-            if(isNotifyPhone()){
-                System.out.println("Sending to user : " + getUid() + " Via Phone, " +": " +"Project name :" + project.getName() + " Got approved, url : " + "www.bgu.ac.il/project/" + project.getProjectCode());
-            }
+            if(isNotifyEmail())
+                notifyEmail(project.getName(),project.getProjectCode()+"");
+            if(isNotifyPhone())
+                notifyPhone(project.getName(),project.getProjectCode()+"");
+
         }
     }
 
@@ -121,6 +120,15 @@ public class User implements Observer {
     @Override
     public int hashCode() {
         return Objects.hash(uid, firstName, familyName, mail, phoneNumber, pass, isStudent, notifyPhone, notifyEmail);
+    }
+
+    private void notifyEmail(String projectName,String projectCode){
+        System.out.println("Sending to user : " + getUid() + ", Via Mail, " +": " +"Project name :" + projectName + " Got approved, url : " + "www.bgu.ac.il/project/" + projectCode);
+
+    }
+    private void notifyPhone(String projectName,String projectCode){
+        System.out.println("Sending to user : " + getUid() + " Via Phone, " +": " +"Project name :" + projectName + " Got approved, url : " + "www.bgu.ac.il/project/" + projectCode);
+
     }
 }
 
