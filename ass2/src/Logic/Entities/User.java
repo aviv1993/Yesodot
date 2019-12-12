@@ -84,11 +84,13 @@ public class User implements Observer {
 
     @Override
     public void update(Project project) {
-        if(isNotifyEmail()){
-            System.out.println("Sending to user : " + getUid() + ", Via Mail, " +": " +"Project name :" + project.getName() + " Got approved, url : " + "www.bgu.ac.il/project/" + project.getProjectCode());
-        }
-        if(isNotifyPhone()){
-            System.out.println("Sending to user : " + getUid() + " Via Phone, " +": " +"Project name :" + project.getName() + " Got approved, url : " + "www.bgu.ac.il/project/" + project.getProjectCode());
+        if(project.getSTATUS()==STATUS.Confirmed){
+            if(isNotifyEmail()){
+                System.out.println("Sending to user : " + getUid() + ", Via Mail, " +": " +"Project name :" +  project.getName() + " Got approved, url : " + "www.bgu.ac.il/project/" + project.getProjectCode());
+            }
+            if(isNotifyPhone()){
+                System.out.println("Sending to user : " + getUid() + " Via Phone, " +": " +"Project name :" + project.getName() + " Got approved, url : " + "www.bgu.ac.il/project/" + project.getProjectCode());
+            }
         }
     }
 

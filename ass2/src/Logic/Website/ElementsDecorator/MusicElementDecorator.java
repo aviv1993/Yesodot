@@ -12,6 +12,6 @@ public class MusicElementDecorator extends ElementDecorator {
     @Override
     public void buildSite(){
         super.buildSite();
-        System.out.println("Design type is : " + designType);
+        System.out.println("Playing music : " + designType);
     }
 }

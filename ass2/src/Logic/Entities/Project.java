@@ -12,7 +12,7 @@ public class Project implements Subject {
     private int howLong;
     private User offer;
     private String academicLeaderName;
-    private List<User> students;
+    private List<String> students;
     private boolean isTaken;
     private Integer projectCode;
     private STATUS status;
@@ -29,6 +29,7 @@ public class Project implements Subject {
         this.projectCode = projectCode;
         this.status = STATUS.Check;
         observers=new ArrayList<>();
+        students=null;
     }
 
     public String getAcademicLeaderName() {
@@ -43,11 +44,11 @@ public class Project implements Subject {
         return projectCode;
     }
 
-    public List<User> getStudents() {
+    public List<String> getStudents() {
         return students;
     }
 
-    public void setStudents(List<User> students) {
+    public void setStudents(List<String> students) {
         this.students = students;
     }
 

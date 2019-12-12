@@ -35,6 +35,7 @@ public class ProjectDbImplement implements ProjectController{
     @Override
     public boolean registerToProject(List<String> ids, String leader, Project project) {
         project.setAcademicLeaderName(leader);
+        project.setStudents(ids);
         return false;
     }
 

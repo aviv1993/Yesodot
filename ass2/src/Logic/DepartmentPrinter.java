@@ -1,11 +1,12 @@
 package Logic;
 
 import Logic.Entities.Project;
+import Logic.Entities.STATUS;
 
 public class DepartmentPrinter implements Observer {
     String departmentName;
-    public DepartmentPrinter(String name){
-        this.departmentName=name;
+    public DepartmentPrinter(String departmentName){
+        this.departmentName=departmentName;
     }
     @Override
     public void update(Project project) {

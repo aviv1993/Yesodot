@@ -6,13 +6,10 @@ import DB.UsersController;
 import Logic.Entities.Project;
 import Logic.Entities.STATUS;
 import Logic.Entities.User;
-import Logic.Website.BasicWebsite;
-import Logic.Website.DesignDecorator;
+import Logic.Website.*;
 import Logic.Website.ElementsDecorator.LinkElementDecorator;
 import Logic.Website.ElementsDecorator.LogoElementDecorator;
 import Logic.Website.ElementsDecorator.MusicElementDecorator;
-import Logic.Website.MenuDecorator;
-import Logic.Website.WebsiteComponent;
 
 import java.util.*;
 
@@ -128,7 +125,7 @@ public class ProjectManager implements ProjectManagment {
     }
 
     @Override
-    public WebsiteComponent decorateSite(String featureWanted,String data,WebsiteComponent component){
+    public WebsiteComponent decorateSite(String featureWanted,String data,WebsiteComponent component, boolean accessible){
         WebsiteComponent newComponent=null;
         switch(featureWanted.toLowerCase()){
             case "design" :
@@ -149,7 +146,7 @@ public class ProjectManager implements ProjectManagment {
             default:
                 System.out.println("Wrong decorator feature, please choose from : design , menu, logo, link, music" );
         }
-        return newComponent;
+        return new ProxyWebsite(accessible,newComponent);
     }
 
     private boolean isAlreadyOfferdThisYear(String org, String userName,String projectName){

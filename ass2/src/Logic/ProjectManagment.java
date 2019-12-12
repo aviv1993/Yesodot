@@ -24,6 +24,6 @@ public interface ProjectManagment {
 
     //decorator+proxy patterns, question 3 :
     BasicWebsite getBasicWebsite(String projectCode, String text);
-    WebsiteComponent decorateSite(String featureWanted, String data, WebsiteComponent component);
+    WebsiteComponent decorateSite(String featureWanted, String data, WebsiteComponent component, boolean accessible);
 
 }

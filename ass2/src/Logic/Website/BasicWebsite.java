@@ -13,7 +13,7 @@ public class BasicWebsite implements WebsiteComponent {
 
     @Override
     public void buildSite() {
-        System.out.println("Project code number : " + projectCode +"Has this website :");
+        System.out.println("Project code number : " + projectCode +", Has this website :");
         System.out.println("Text : " + text);
     }
 }
