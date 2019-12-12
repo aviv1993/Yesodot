@@ -1,32 +1,36 @@
-import DB.ProjectController;
 import DB.ProjectDbImplement;
 import DB.UserDbImplement;
-import DB.UsersController;
 import Logic.DepartmentPrinter;
-import Logic.Entities.Project;
+import Logic.Entities.STATUS;
 import Logic.ProjectManager;
 import Logic.ProjectManagment;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 public class Main {
 
-    private static ProjectManagment pm;
-
     public static void main(String[] args){
-        initAll();
-        /*
-        pm.register("")
-                */
-    }
+        ProjectManagment pm = new ProjectManager(new UserDbImplement(),new ProjectDbImplement(),new DepartmentPrinter("CS"));
+        //Students :
+        pm.register("a","a",true);
+        pm.register("b","b",true);
+        pm.register("c","c",true);
+        pm.register("d","d",true);
+       //Offer :
+        pm.register("e","e",false);
+        //Login :
+        pm.login("a","a");
+        pm.login("b","b");
+        pm.login("c","c");
+        pm.login("d","d");
+        pm.login("e","e");
 
-    public static void initAll(){
-        DepartmentPrinter dp1 = new DepartmentPrinter("CS");
-        ProjectController pc = new ProjectDbImplement();
-        UsersController uc = new UserDbImplement();
-        pm = new ProjectManager(uc,pc,dp1);
+        //Add projects :
+        int pid = pm.addProject("e","project","AS","220","AS","AS","AS","AS","AS");
+         //Register observer :
+        pm.registerObserverToProjct("a",pid,true,true);
+        pm.setProjectStatus(STATUS.Confirmed,pid);
+
+
+
     }
 
 }

@@ -10,7 +10,8 @@ import java.util.List;
 public class Project implements Subject {
     private String name,desc,org;
     private int howLong;
-    private User offer,leader;
+    private User offer;
+    private String academicLeaderName;
     private List<User> students;
     private boolean isTaken;
     private Integer projectCode;
@@ -30,12 +31,12 @@ public class Project implements Subject {
         observers=new ArrayList<>();
     }
 
-    public User getLeader() {
-        return leader;
+    public String getAcademicLeaderName() {
+        return academicLeaderName;
     }
 
-    public void setLeader(User leader) {
-        this.leader = leader;
+    public void setAcademicLeaderName(String academicLeaderName) {
+        this.academicLeaderName = academicLeaderName;
     }
 
     public Integer getProjectCode(){
@@ -98,5 +99,9 @@ public class Project implements Subject {
     public void notifyObservers() {
         for(Observer observer : observers)
             observer.update(this);
+    }
+
+    public STATUS getSTATUS(){
+        return status;
     }
 }

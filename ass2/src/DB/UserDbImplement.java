@@ -2,11 +2,16 @@ package DB;
 
 import Logic.Entities.User;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class UserDbImplement implements UsersController{
 
     Map<String,User> users;
+
+    public UserDbImplement(){
+        users=new HashMap<>();
+    }
     @Override
     public boolean addUser(User user) {
         users.put(user.getUid(),user);
@@ -25,8 +30,9 @@ public class UserDbImplement implements UsersController{
     }
 
     @Override
-    public boolean isValidUser(String uid) {
-        return users.containsKey(uid);
+    public boolean isValidUser(String userName,String pass) {
+        User user = users.get(userName);
+        return user!=null && user.isTheSamePAss(pass);
     }
 
     @Override

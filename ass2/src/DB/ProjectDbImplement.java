@@ -2,6 +2,7 @@ package DB;
 
 import Logic.Entities.Project;
 import Logic.Entities.User;
+import org.omg.CORBA.PRIVATE_MEMBER;
 
 import java.util.*;
 
@@ -10,7 +11,7 @@ public class ProjectDbImplement implements ProjectController{
     private Map<Integer,Project> projects;
 
     public ProjectDbImplement(){
-        projectCode=0;
+        projectCode=1;
         projects=new HashMap<>();
     }
     @Override
@@ -32,26 +33,14 @@ public class ProjectDbImplement implements ProjectController{
     }
 
     @Override
-    public boolean isAlreadyOfferThisYear(String userid) {
-        Date date = new Date();
-        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
-        cal.setTime(date);
-        int currYear = cal.get(Calendar.YEAR);
-        for(Project pr : projects.values()){
-            if(pr.getOffer().getUid().equals(userid)) {
-                Date otherDate = pr.getCreateDate();
-                cal.setTime(date);
-                int otherYear = cal.get(Calendar.YEAR);
-                if(otherYear==currYear)
-                    return false;
-            }
-        }
-        return true;
+    public boolean registerToProject(List<String> ids, String leader, Project project) {
+        project.setAcademicLeaderName(leader);
+        return false;
     }
 
     @Override
-    public boolean registerToProject(List<String> ids, User leader, Project project) {
-        project.setLeader(leader);
-        return false;
+    public Collection<Project> getAllProjects(){
+        return  projects.values();
     }
+
 }

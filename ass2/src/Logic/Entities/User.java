@@ -3,12 +3,16 @@ package Logic.Entities;
 import Logic.Observer;
 import Logic.Subject;
 
+import java.util.Objects;
+
 public class User implements Observer {
     private String uid, firstName, familyName, mail, phoneNumber;
+    private String pass;
     private boolean isStudent;
     private boolean notifyPhone,notifyEmail;
-    public User(String uid) {
+    public User(String uid, String pass) {
         this.uid = uid;
+        this.pass=pass;
     }
 
     public String getFirstName() {
@@ -81,11 +85,40 @@ public class User implements Observer {
     @Override
     public void update(Project project) {
         if(isNotifyEmail()){
-            System.out.println("Sending to mail : " + getMail() +": " +"Project name :" + project.getName() + "Got approved, url : " + "www.bgu.ac.il/project/" + project.getProjectCode());
+            System.out.println("Sending to user : " + getUid() + ", Via Mail, " +": " +"Project name :" + project.getName() + " Got approved, url : " + "www.bgu.ac.il/project/" + project.getProjectCode());
         }
         if(isNotifyPhone()){
-            System.out.println("Sending to phone : " + getPhoneNumber() +": " +"Project name :" + project.getName() + "Got approved, url : " + "www.bgu.ac.il/project/" + project.getProjectCode());
+            System.out.println("Sending to user : " + getUid() + " Via Phone, " +": " +"Project name :" + project.getName() + " Got approved, url : " + "www.bgu.ac.il/project/" + project.getProjectCode());
         }
+    }
+
+    public boolean isTheSamePAss(String other){
+        return other!=null && other.equals(pass);
+    }
+
+    public void setIsStudent(boolean is){
+        this.isStudent=is;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return isStudent == user.isStudent &&
+                notifyPhone == user.notifyPhone &&
+                notifyEmail == user.notifyEmail &&
+                Objects.equals(uid, user.uid) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(familyName, user.familyName) &&
+                Objects.equals(mail, user.mail) &&
+                Objects.equals(phoneNumber, user.phoneNumber) &&
+                Objects.equals(pass, user.pass);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uid, firstName, familyName, mail, phoneNumber, pass, isStudent, notifyPhone, notifyEmail);
     }
 }
 
