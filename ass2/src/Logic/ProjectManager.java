@@ -6,6 +6,13 @@ import DB.UsersController;
 import Logic.Entities.Project;
 import Logic.Entities.STATUS;
 import Logic.Entities.User;
+import Logic.Website.BasicWebsite;
+import Logic.Website.DesignDecorator;
+import Logic.Website.ElementsDecorator.LinkElementDecorator;
+import Logic.Website.ElementsDecorator.LogoElementDecorator;
+import Logic.Website.ElementsDecorator.MusicElementDecorator;
+import Logic.Website.MenuDecorator;
+import Logic.Website.WebsiteComponent;
 
 import java.util.*;
 
@@ -113,6 +120,36 @@ public class ProjectManager implements ProjectManagment {
         user.setNotifyPhone(phone);
         user.setNotifyEmail(email);
         return true;
+    }
+
+    @Override
+    public BasicWebsite getBasicWebsite(String projectCode, String text){
+        return new BasicWebsite(projectCode,text);
+    }
+
+    @Override
+    public WebsiteComponent decorateSite(String featureWanted,String data,WebsiteComponent component){
+        WebsiteComponent newComponent=null;
+        switch(featureWanted.toLowerCase()){
+            case "design" :
+                newComponent=new DesignDecorator(data,component);
+                break;
+            case "menu" :
+                newComponent = new MenuDecorator(data,component);
+                break;
+            case "logo":
+                newComponent=new LogoElementDecorator(data,component);
+                break;
+            case "link":
+                newComponent=new LinkElementDecorator(data,component);
+                break;
+            case "music":
+                newComponent=new MusicElementDecorator(data,component);
+                break;
+            default:
+                System.out.println("Wrong decorator feature, please choose from : design , menu, logo, link, music" );
+        }
+        return newComponent;
     }
 
     private boolean isAlreadyOfferdThisYear(String org, String userName,String projectName){

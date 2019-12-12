@@ -6,9 +6,6 @@ public class AllTests {
         TestSuite suite= new TestSuite("ProjectManagement");
         suite.addTest( new TestSuite(SuggestedProjectTest.class));
         suite.addTest(new TestSuite(RegisterToProject.class));
-
         return suite;
     }
-
-
 }
