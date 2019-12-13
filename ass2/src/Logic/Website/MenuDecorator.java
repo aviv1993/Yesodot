@@ -8,8 +8,7 @@ public class MenuDecorator extends WebsiteDecorator {
     }
 
     @Override
-    public void buildSite(){
-        super.buildSite();
-        System.out.println("Menu : " + menu);
+    public String buildSite(){
+        return super.buildSite() + "\nMenu : " + menu;
     }
 }

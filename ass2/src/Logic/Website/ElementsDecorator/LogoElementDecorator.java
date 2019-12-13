@@ -10,8 +10,7 @@ public class LogoElementDecorator extends ElementDecorator {
     }
 
     @Override
-    public void buildSite(){
-        super.buildSite();
-        System.out.println("Logo : " +  logo);
+    public String buildSite(){
+        return super.buildSite() + "\n" + "Logo : " +  logo;
     }
 }

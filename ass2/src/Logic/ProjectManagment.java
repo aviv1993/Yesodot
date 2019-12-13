@@ -1,6 +1,5 @@
 package Logic;
 
-import Logic.Entities.Project;
 import Logic.Entities.STATUS;
 import Logic.Website.BasicWebsite;
 import Logic.Website.WebsiteComponent;
@@ -23,7 +22,9 @@ public interface ProjectManagment {
     boolean setProjectStatus(STATUS status, Integer projectCode);
 
     //decorator+proxy patterns, question 3 :
-    BasicWebsite getBasicWebsite(String projectCode, String text);
-    WebsiteComponent decorateSite(String featureWanted, String data, WebsiteComponent component, boolean accessible);
+
+    void addBasicWebsite(String projectCode, String text);
+    WebsiteComponent decorateSite(String featureWanted, String data, String projectId);
+    void restriectedUsers(List<String> restricedUsers,WebsiteComponent component);
 
 }

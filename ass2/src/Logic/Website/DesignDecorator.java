@@ -8,8 +8,7 @@ public class DesignDecorator extends WebsiteDecorator {
     }
 
     @Override
-    public void buildSite() {
-        super.buildSite();
-        System.out.println("Design type : " + designType);
+    public String buildSite() {
+        return super.buildSite() + "\n" + "Design type : " + designType;
     }
 }

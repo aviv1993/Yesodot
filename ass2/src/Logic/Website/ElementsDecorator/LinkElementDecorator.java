@@ -10,8 +10,7 @@ public class LinkElementDecorator extends ElementDecorator {
     }
 
     @Override
-    public void buildSite(){
-        super.buildSite();
-        System.out.println("Link: " + link);
+    public String buildSite(){
+        return super.buildSite() + "\n" + "Link: " + link;
     }
 }

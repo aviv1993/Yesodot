@@ -16,9 +16,9 @@ public class Main {
         website.buildSite();
         System.out.println();
         WebsiteComponent wc1= pm.decorateSite("logo","site very good",website,true);
-        wc1 = pm.decorateSite("Music","Ariana",wc1,false);
+        wc1 = pm.decorateSite("Music","Ariana",wc1,true);
         wc1 = pm.decorateSite("liNK","hhttttpp",wc1,true);
-        wc1.buildSite();
+        System.out.println(wc1.buildSite());
 
     }
 

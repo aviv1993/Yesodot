@@ -8,7 +8,7 @@ public abstract class WebsiteDecorator implements WebsiteComponent {
     }
 
     @Override
-    public void buildSite() {
-        component.buildSite();
+    public String buildSite() {
+        return component.buildSite();
     }
 }

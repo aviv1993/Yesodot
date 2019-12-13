@@ -3,15 +3,14 @@ package Logic.Website.ElementsDecorator;
 import Logic.Website.WebsiteComponent;
 
 public class MusicElementDecorator extends ElementDecorator {
-    private String designType;
-    public MusicElementDecorator(String designeType, WebsiteComponent component) {
+    private String music;
+    public MusicElementDecorator(String music, WebsiteComponent component) {
         super(component);
-        this.designType=designeType;
+        this.music=music;
     }
 
     @Override
-    public void buildSite(){
-        super.buildSite();
-        System.out.println("Playing music : " + designType);
+    public String buildSite(){
+        return super.buildSite() + "\n" + "Playing music : " + music;
     }
 }

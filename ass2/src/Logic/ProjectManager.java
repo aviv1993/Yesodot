@@ -15,6 +15,7 @@ import java.util.*;
 
 public class ProjectManager implements ProjectManagment {
     Set<User> loggedIn;
+    Map<Project,WebsiteComponent> map ;
     ProjectController pc;
     UsersController uc;
 
@@ -25,6 +26,7 @@ public class ProjectManager implements ProjectManagment {
         this.pc=pc;
         this.dp=dp;
         loggedIn=new HashSet<>();
+        map=new HashMap<>();
     }
 
     @Override
@@ -120,12 +122,14 @@ public class ProjectManager implements ProjectManagment {
     }
 
     @Override
-    public BasicWebsite getBasicWebsite(String projectCode, String text){
-        return new BasicWebsite(projectCode,text);
+    public void addBasicWebsite(String projectCode, String text){
+        if(map.containsKey(projectCode))
+            map.put(pc.getProject(Integer.parseInt(projectCode)),new BasicWebsite(projectCode,text));
     }
 
     @Override
-    public WebsiteComponent decorateSite(String featureWanted,String data,WebsiteComponent component, boolean accessible){
+    public WebsiteComponent decorateSite(String featureWanted,String data,String projectId){
+        WebsiteComponent component=map.get(projectId);
         WebsiteComponent newComponent=null;
         switch(featureWanted.toLowerCase()){
             case "design" :
@@ -146,10 +150,15 @@ public class ProjectManager implements ProjectManagment {
             default:
                 System.out.println("Wrong decorator feature, please choose from : design , menu, logo, link, music" );
         }
-        return new ProxyWebsite(accessible,newComponent);
+        return newComponent;
     }
 
-    private boolean isAlreadyOfferdThisYear(String org, String userName,String projectName){
+    @Override
+    public void restriectedUsers(List<String> restricedUsers, WebsiteComponent component) {
+        //TODO
+    }
+
+    private boolean isAlreadyOfferdThisYear(String org, String userName, String projectName){
         Date date = new Date();
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
         cal.setTime(date);

@@ -9,10 +9,13 @@ public class ProxyWebsite implements WebsiteComponent {
     }
 
     @Override
-    public void buildSite() {
+    public String buildSite() {
+        String out;
         if(allowed)
-            realComponent.buildSite();
+            out = realComponent.buildSite();
         else
-            System.out.println("This feature is limited");
+            out = "This feature is limited to you";
+        return out;
+
     }
 }

@@ -9,7 +9,7 @@ public abstract class ElementDecorator extends WebsiteDecorator {
         super(component);
     }
 
-    public void buildSite() {
-        super.buildSite();
+    public String buildSite() {
+        return super.buildSite();
     }
 }
