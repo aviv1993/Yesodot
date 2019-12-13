@@ -1,7 +1,6 @@
-package Logic.Entities;
+package System.Logic.Entities;
 
-import Logic.Observer;
-import Logic.Subject;
+import System.Logic.Observer;
 
 import java.util.Objects;
 

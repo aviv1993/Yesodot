@@ -1,7 +1,6 @@
-package DB;
+package System.DB;
 
-import Logic.Entities.Project;
-import Logic.Entities.User;
+import System.Logic.Entities.Project;
 //import org.omg.CORBA.PRIVATE_MEMBER;
 
 import java.util.*;

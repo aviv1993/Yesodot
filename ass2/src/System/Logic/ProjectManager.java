@@ -1,21 +1,23 @@
-package Logic;
+package System.Logic;
 
-import DB.ProjectController;
-import DB.UsersController;
+import System.DB.ProjectController;
+import System.DB.UsersController;
 
-import Logic.Entities.Project;
-import Logic.Entities.STATUS;
-import Logic.Entities.User;
-import Logic.Website.*;
-import Logic.Website.ElementsDecorator.LinkElementDecorator;
-import Logic.Website.ElementsDecorator.LogoElementDecorator;
-import Logic.Website.ElementsDecorator.MusicElementDecorator;
+import System.Logic.Entities.Project;
+import System.Logic.Entities.STATUS;
+import System.Logic.Entities.User;
+import System.Logic.Website.*;
+import System.Logic.Website.Decorator.DesignDecorator.*;
+import System.Logic.Website.Decorator.MenuDecorator;
+import System.Logic.Website.Decorator.ElementsDecorator.LinkElementDecorator;
+import System.Logic.Website.Decorator.ElementsDecorator.LogoElementDecorator;
+import System.Logic.Website.Decorator.ElementsDecorator.MusicElementDecorator;
 
 import java.util.*;
 
 public class ProjectManager implements ProjectManagment {
     Set<User> loggedIn;
-    Map<Project,WebsiteComponent> map ;
+    Map<String,WebsiteComponent> map ;
     ProjectController pc;
     UsersController uc;
 
@@ -122,18 +124,27 @@ public class ProjectManager implements ProjectManagment {
     }
 
     @Override
-    public void addBasicWebsite(String projectCode, String text){
-        if(map.containsKey(projectCode))
-            map.put(pc.getProject(Integer.parseInt(projectCode)),new BasicWebsite(projectCode,text));
+    public void addBasicWebsiteToProject(int projectCode, String text){
+        if(pc.getProject(projectCode)!=null)
+            map.put(projectCode+"",new BasicWebsite(projectCode+"",text));
     }
 
     @Override
-    public WebsiteComponent decorateSite(String featureWanted,String data,String projectId){
-        WebsiteComponent component=map.get(projectId);
+    public void decorateSite(String featureWanted,String data,int projectId){
+        WebsiteComponent component=map.get(projectId+"");
         WebsiteComponent newComponent=null;
         switch(featureWanted.toLowerCase()){
-            case "design" :
-                newComponent=new DesignDecorator(data,component);
+            case "design1" :
+                newComponent=new Design1Decorator(data,component);
+                break;
+            case "design2" :
+                newComponent=new Design2Decorator(data,component);
+                break;
+            case "design3" :
+                newComponent=new Design3Decorator(data,component);
+                break;
+            case "design4" :
+                newComponent=new Design4Decorator(data,component);
                 break;
             case "menu" :
                 newComponent = new MenuDecorator(data,component);
@@ -150,12 +161,24 @@ public class ProjectManager implements ProjectManagment {
             default:
                 System.out.println("Wrong decorator feature, please choose from : design , menu, logo, link, music" );
         }
-        return newComponent;
+        map.put(projectId+"",newComponent);
     }
 
     @Override
-    public void restriectedUsers(List<String> restricedUsers, WebsiteComponent component) {
-        //TODO
+    public void restrictUsers(List<String> restricedUsers, int projectCode) {
+        WebsiteComponent website = map.get(projectCode+"");
+        if(website!=null){
+            map.put(projectCode+"",new ProxyWebsite(restricedUsers,website));
+        }
+    }
+
+
+    @Override
+    public WebsiteComponent getWebsite(String userId,int projectCode) {
+        WebsiteComponent web = map.get(projectCode+"");
+        if(web!=null)
+            web.authenticate(userId);
+        return web;
     }
 
     private boolean isAlreadyOfferdThisYear(String org, String userName, String projectName){

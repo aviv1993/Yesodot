@@ -1,7 +1,6 @@
-package Logic;
+package System.Logic;
 
-import Logic.Entities.Project;
-import Logic.Entities.STATUS;
+import System.Logic.Entities.Project;
 
 public class DepartmentPrinter implements Observer {
     String departmentName;

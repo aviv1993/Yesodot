@@ -1,6 +1,6 @@
-package DB;
+package System.DB;
 
-import Logic.Entities.User;
+import System.Logic.Entities.User;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,7 +1,7 @@
-package Logic.Entities;
+package System.Logic.Entities;
 
-import Logic.Observer;
-import Logic.Subject;
+import System.Logic.Observer;
+import System.Logic.Subject;
 
 import java.util.ArrayList;
 import java.util.Date;

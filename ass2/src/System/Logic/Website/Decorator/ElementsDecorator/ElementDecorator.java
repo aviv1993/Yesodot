@@ -1,7 +1,7 @@
-package Logic.Website.ElementsDecorator;
+package System.Logic.Website.Decorator.ElementsDecorator;
 
-import Logic.Website.WebsiteComponent;
-import Logic.Website.WebsiteDecorator;
+import System.Logic.Website.WebsiteComponent;
+import System.Logic.Website.Decorator.WebsiteDecorator;
 
 public abstract class ElementDecorator extends WebsiteDecorator {
 

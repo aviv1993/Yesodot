@@ -1,4 +1,6 @@
-package Logic.Website;
+package System.Logic.Website.Decorator;
+
+import System.Logic.Website.WebsiteComponent;
 
 public class MenuDecorator extends WebsiteDecorator {
     private String menu;

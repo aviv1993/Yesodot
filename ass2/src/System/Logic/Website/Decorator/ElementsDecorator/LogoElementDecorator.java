@@ -1,6 +1,6 @@
-package Logic.Website.ElementsDecorator;
+package System.Logic.Website.Decorator.ElementsDecorator;
 
-import Logic.Website.WebsiteComponent;
+import System.Logic.Website.WebsiteComponent;
 
 public class LogoElementDecorator extends ElementDecorator {
     private String logo;

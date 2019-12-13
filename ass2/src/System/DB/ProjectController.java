@@ -1,7 +1,6 @@
-package DB;
+package System.DB;
 
-import Logic.Entities.Project;
-import Logic.Entities.User;
+import System.Logic.Entities.Project;
 
 import java.util.Collection;
 import java.util.List;

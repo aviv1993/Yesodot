@@ -1,6 +1,6 @@
-package DB;
+package System.DB;
 
-import Logic.Entities.User;
+import System.Logic.Entities.User;
 
 public interface UsersController {
     boolean addUser(User user);

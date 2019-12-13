@@ -1,4 +1,4 @@
-package Logic;
+package System.Logic;
 
 public interface Subject {
     void attach(Observer user);

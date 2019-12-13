@@ -1,11 +1,11 @@
 package bridgeProject;
 
-import DB.ProjectDbImplement;
-import DB.UserDbImplement;
-import Logic.DepartmentPrinter;
-import Logic.Entities.STATUS;
-import Logic.ProjectManager;
-import Logic.ProjectManagment;
+import System.DB.ProjectDbImplement;
+import System.DB.UserDbImplement;
+import System.Logic.DepartmentPrinter;
+import System.Logic.Entities.STATUS;
+import System.Logic.ProjectManager;
+import System.Logic.ProjectManagment;
 import acptTests.auxiliary.DBRegisteredProjectInfo;
 import acptTests.auxiliary.DBSuggestedProjectInfo;
 

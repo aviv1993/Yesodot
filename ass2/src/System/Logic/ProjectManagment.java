@@ -1,8 +1,7 @@
-package Logic;
+package System.Logic;
 
-import Logic.Entities.STATUS;
-import Logic.Website.BasicWebsite;
-import Logic.Website.WebsiteComponent;
+import System.Logic.Entities.STATUS;
+import System.Logic.Website.WebsiteComponent;
 
 import java.util.List;
 
@@ -17,14 +16,15 @@ public interface ProjectManagment {
     int addProject(String userName, String name ,String description ,String howLong ,String firstName ,String familyName ,String email, String phone, String org);
     int registerToProject(String userName, List<String> ids, String leaderId,Integer projectCode);
 
-    //observer pattern, question 2 :
+    //observer pattern, question 3 :
     boolean registerObserverToProjct(String uid,int projectCode,boolean phone,boolean email);
     boolean setProjectStatus(STATUS status, Integer projectCode);
 
-    //decorator+proxy patterns, question 3 :
+    //decorator+proxy patterns, question 4 :
 
-    void addBasicWebsite(String projectCode, String text);
-    WebsiteComponent decorateSite(String featureWanted, String data, String projectId);
-    void restriectedUsers(List<String> restricedUsers,WebsiteComponent component);
+    void addBasicWebsiteToProject(int projectCode, String text);
+    void decorateSite(String featureWanted, String data, int projectId);
+    void restrictUsers(List<String> restricedUsers,int projectCode);
+    WebsiteComponent getWebsite(String userId,int projectCode);
 
 }
