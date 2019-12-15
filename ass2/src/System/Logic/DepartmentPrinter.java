@@ -9,6 +9,10 @@ public class DepartmentPrinter implements Observer {
     }
     @Override
     public void update(Project project) {
+        notifyAll(project);
+    }
+
+    private void notifyAll(Project project){
         System.out.println("Department : " + departmentName + " Updates that project : " + project.getName() + " With descirption : " + project.getDesc() + "" +
                 " Which was offerd by : " + project.getOffer().getFirstName() + " was approved, uml link : " +  "www.bgu.ac.il/project/uml/" + project.getProjectCode());
     }
