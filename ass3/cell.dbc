@@ -1,0 +1,43 @@
+Cell class :
+	1. initialize(): Cell
+	 	Purpose: Creates (or initializes) a Cell object, with a null value.
+		The initialized Cell object it not connected to any constraint.
+
+	2. initialize(Object val): Cell
+		Purpose: Creates (or initializes) a Cell object. The input val
+		must not be null. The initialized Cell object has val as its value,
+		is not connected to any constraint, and is in “defined” status.
+
+	3. getValue(): Object
+		Purpose: Returns the value of the Cell. Possible only if the Cell
+		has a value.
+
+	4. connectedTo(Constraint c): Boolean
+		Purpose: Returns true if the cell object is connected to
+		constraint c. The input constraint c must not be null.
+
+	5. addConnection(Constraint c, int port): int
+		Purpose: Adds the constraint c to the constraints to which the
+		cell is connected. Returns the number of connected constraints.
+		The input constraint c must not be null and port must be a valid
+		port for c. Port port of c must have the calling Cell (this) as its
+		content.
+
+	6. setValue(Object val): void
+		Purpose: Sets the value stored in the Cell to the input val. The
+		input value val must not be null. The status of the Cell after
+		setting its value is “defined”.
+
+	7. setValue(Object val, Constraint c): void
+		Purpose: Sets the value of the Cell to the input val. The input
+		value val and the input constraint c that is connected to the Cell
+		must not be null. Possible only if the Cell does not have a
+		value. The status of the Cell after setting its value is “deduced”,
+		and its notifier is c.
+
+Constraint class :
+	8. validPort(int port): Boolean
+		Purpose: Tests whether port is a valid port for the calling
+		constraint.
+	9. getCell(int port): Cell
+		Purpose: Returns the Cell in port

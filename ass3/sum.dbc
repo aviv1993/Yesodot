@@ -1,0 +1,33 @@
+
+a.
+Class Sum
+ Expression augend
+ Expression addend
+ addAddend(Expression e): void
+ Purpose: Adds an addend component. Possible only if the addend
+ component does not exist.
+ require:
+    added_is_empty : addend = null
+ ensure:
+    addednd = e
+
+b.1 : 
+Class MutatedSum : 
+    Expression augend
+    Expression addend
+    addAddend(Expression e): void
+    Purpose: replace or init the current addend
+    component does not exist.
+ 
+    ensure:
+        addednd=e
+b.2 
+Class MutatedSum : 
+ Expression augend
+ Expression addend
+ addAddend(Expression e): void
+ Purpose: Adds an addend component or remain the old one if exists. 
+ ensure:
+    added=null implies addend = e
+
+b.3 Not possible, we cant strengthen the pre condition of super -class .
